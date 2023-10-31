@@ -1,4 +1,5 @@
 {
+  "license": "UNLICENSED",
   "name": "railway-todo-app",
   "version": "0.1.0",
   "private": true,
@@ -14,12 +15,9 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "6",
     "sass": "^1.69.5",
-    "typescript": "^5.2.2",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
@@ -31,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:eslint": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'"
+    "lint:eslint": "eslint --fix 'src/**/*.{js,jsx}'",
+    "fmt": "prettier --write '**/*.{js,jsx}'"
   },
   "eslintConfig": {
     "extends": [
