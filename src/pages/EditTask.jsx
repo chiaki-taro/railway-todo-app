@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 import { Header } from '../components/Header';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { url } from '../const';
 import { useNavigate, useParams } from 'react-router-dom';
+import formatDate from '../utility/formatDate';
 import './editTask.scss';
 
 export const EditTask = () => {
@@ -12,17 +15,18 @@ export const EditTask = () => {
   const [cookies] = useCookies();
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
+  const [limitDateTime, setLimitDateTime] = useState(new Date());
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
   const onUpdateTask = () => {
-    console.log(isDone);
     const data = {
       title: title,
       detail: detail,
       done: isDone,
+      limit: formatDate(limitDateTime, "yyyy-MM-ddTHH:mm:00Z"),
     };
 
     axios
@@ -97,6 +101,17 @@ export const EditTask = () => {
             className="edit-task-detail"
             value={detail}
           />
+          <br />
+          <label>期限</label>
+          <br />
+          <DatePicker
+            dateFormat="yyyy-MM-dd HH:mm"
+            selected={limitDateTime}
+            onChange={(date) => setLimitDateTime(date)}
+            showTimeSelect
+            timeIntervals={60}
+          />
+          <br />
           <br />
           <div>
             <input

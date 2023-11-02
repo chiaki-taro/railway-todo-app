@@ -4,6 +4,8 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { Header } from '../components/Header';
 import { url } from '../const';
+import dateToString from '../utility/dateToString';
+import calculateLimitTime from '../utility/calculateLimitTime';
 import './home.scss';
 
 export const Home = () => {
@@ -130,6 +132,8 @@ const Tasks = (props) => {
               <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
                 {task.title}
                 <br />
+                期限:{dateToString(task.limit)}
+                <br />
                 {task.done ? '完了' : '未完了'}
               </Link>
             </li>
@@ -148,6 +152,10 @@ const Tasks = (props) => {
           <li key={key} className="task-item">
             <Link to={`/lists/${selectListId}/tasks/${task.id}`} className="task-item-link">
               {task.title}
+              <br />
+              期限:{dateToString(task.limit)}
+              <br />
+              {calculateLimitTime(dateToString(task.limit))}
               <br />
               {task.done ? '完了' : '未完了'}
             </Link>

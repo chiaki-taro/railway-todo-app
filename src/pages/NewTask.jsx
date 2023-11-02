@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { url } from '../const';
 import { Header } from '../components/Header';
+import formatDate from '../utility/formatDate';
 import './newTask.scss';
-import { useNavigate } from 'react-router-dom';
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
+  const [limitDateTime, setLimitDateTime] = useState(new Date());
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const navigate = useNavigate();
@@ -22,6 +26,7 @@ export const NewTask = () => {
       title: title,
       detail: detail,
       done: false,
+      limit: formatDate(limitDateTime, "yyyy-MM-ddTHH:mm:00Z"),
     };
 
     axios
@@ -81,6 +86,17 @@ export const NewTask = () => {
           <label>詳細</label>
           <br />
           <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
+          <br />
+          <label>期限</label>
+          <br />
+          <DatePicker
+            dateFormat="yyyy-MM-dd HH:mm"
+            selected={limitDateTime}
+            onChange={(date) => setLimitDateTime(date)}
+            showTimeSelect
+            timeIntervals={60}
+          />
+          <br />
           <br />
           <button type="button" className="new-task-button" onClick={onCreateTask}>
             作成
