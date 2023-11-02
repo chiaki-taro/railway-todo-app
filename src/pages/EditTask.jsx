@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import { url } from '../const';
 import { useNavigate, useParams } from 'react-router-dom';
 import formatDate from '../utility/formatDate';
+import dateToString from '../utility/dateToString';
 import './editTask.scss';
 
 export const EditTask = () => {
@@ -70,6 +71,7 @@ export const EditTask = () => {
         const task = res.data;
         setTitle(task.title);
         setDetail(task.detail);
+        setLimitDateTime(new Date(dateToString(task.limit)));
         setIsDone(task.done);
       })
       .catch((err) => {
