@@ -7,9 +7,14 @@
   color: #ffffff;
   display: flex;
   justify-content: space-between;
-}
 
-.sign-out-button {
-  color: #ffffff;
-  margin: auto 25px auto auto;
+  .home-link {
+    text-decoration: none;
+    color: white;
+  }
+
+  .sign-out-button {
+    color: #ffffff;
+    margin: auto 25px auto auto;
+  }
 }
