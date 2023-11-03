@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
+import 'react-datepicker/dist/react-datepicker.css';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { url } from '../const';
@@ -26,7 +26,7 @@ export const NewTask = () => {
       title: title,
       detail: detail,
       done: false,
-      limit: formatDate(limitDateTime, "yyyy-MM-ddTHH:mm:00Z"),
+      limit: formatDate(limitDateTime, 'yyyy-MM-ddTHH:mm:00Z'),
     };
 
     axios

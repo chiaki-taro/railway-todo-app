@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
+import 'react-datepicker/dist/react-datepicker.css';
 import { Header } from '../components/Header';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -27,7 +27,7 @@ export const EditTask = () => {
       title: title,
       detail: detail,
       done: isDone,
-      limit: formatDate(limitDateTime, "yyyy-MM-ddTHH:mm:00Z"),
+      limit: formatDate(limitDateTime, 'yyyy-MM-ddTHH:mm:00Z'),
     };
 
     axios

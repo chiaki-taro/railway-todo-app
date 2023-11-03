@@ -11,7 +11,10 @@ import { SignUp } from '../pages/SignUp';
 import { EditList } from '../pages/EditList';
 
 export const Router = () => {
-  const auth = useSelector((state) => {console.log(state); return state.auth.isSignIn});
+  const auth = useSelector((state) => {
+    console.log(state);
+    return state.auth.isSignIn;
+  });
 
   return (
     <BrowserRouter>

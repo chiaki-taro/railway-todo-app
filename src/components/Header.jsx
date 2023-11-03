@@ -12,9 +12,6 @@ export const Header = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [cookies, setCookie, removeCookie] = useCookies();
-  const navigateHome = () => {
-    navigate('/');
-  }
   const handleSignOut = () => {
     dispatch(signOut());
     removeCookie('token');
