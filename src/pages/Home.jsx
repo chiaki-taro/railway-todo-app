@@ -15,6 +15,13 @@ export const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
+
+  const handleListItemKeyDown = (e, id) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      handleSelectList(id);
+    }
+  };
+
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
   useEffect(() => {
     axios
@@ -30,6 +37,22 @@ export const Home = () => {
         setErrorMessage(`リストの取得に失敗しました。${err}`);
       });
   }, []);
+
+  const handleSelectList = (id) => {
+    setSelectListId(id);
+    axios
+      .get(`${url}/lists/${id}/tasks`, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then((res) => {
+        setTasks(res.data.tasks);
+      })
+      .catch((err) => {
+        setErrorMessage(`タスクの取得に失敗しました。${err}`);
+      });
+  };
 
   useEffect(() => {
     const listId = lists[0]?.id;
@@ -50,21 +73,6 @@ export const Home = () => {
     }
   }, [lists]);
 
-  const handleSelectList = (id) => {
-    setSelectListId(id);
-    axios
-      .get(`${url}/lists/${id}/tasks`, {
-        headers: {
-          authorization: `Bearer ${cookies.token}`,
-        },
-      })
-      .then((res) => {
-        setTasks(res.data.tasks);
-      })
-      .catch((err) => {
-        setErrorMessage(`タスクの取得に失敗しました。${err}`);
-      });
-  };
   return (
     <div>
       <Header />
@@ -88,8 +96,10 @@ export const Home = () => {
               return (
                 <li
                   key={key}
-                  className={`list-tab-item ${isActive ? 'active' : ''}`}
+                  tabIndex={0}
+                  onKeyDown={(e) => handleListItemKeyDown(e, list.id)}
                   onClick={() => handleSelectList(list.id)}
+                  className={`list-tab-item ${isActive ? 'active' : ''}`}
                 >
                   {list.title}
                 </li>
