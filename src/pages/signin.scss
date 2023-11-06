@@ -4,6 +4,13 @@
   width: 500px;
   margin: 0 auto;
 
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+
   .signin-form {
     margin: 25px 0;
   }

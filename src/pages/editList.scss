@@ -1,8 +1,14 @@
 @charset "utf-8";
 
 .edit-list {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
   .edit-list-form {
     color: #555555;
@@ -11,6 +17,10 @@
   .edit-list-title {
     width: 300px;
     margin-bottom: 25px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   .delete-list-button {

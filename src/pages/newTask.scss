@@ -1,8 +1,15 @@
 @charset "utf-8";
 
 .new-task {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
   .new-task-form {
     color: #555555;
@@ -11,6 +18,10 @@
   .new-task-select-list, .new-task-title, .new-task-detail {
     width: 300px;
     margin-bottom: 25px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   .new-task-detail {
