@@ -36,6 +36,10 @@
     border: solid 1px #242F9B;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 320px) {
+      margin: 0 auto;
+    }
   }
 
   .active {
